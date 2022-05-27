@@ -3,6 +3,7 @@ class LCVMap {
         this.mapElement = document.getElementById("map");
         this.mapCenter = {lat: 43.07411085808346, lng: -88.44808750766715};
         this.defaultZoom = 15;
+        this.days = ["W", "T", "F", "S"];
     }
 
     initMap() {
@@ -38,8 +39,7 @@ class LCVMap {
             .filter(location => !isNaN(location.latitude) && !isNaN(location.longitude));
 
         this.markers = locations.map(location => {
-            const days = ["W", "T", "F", "S"];
-            const daysOpen = days.map(day => {
+            const daysOpen = this.days.map(day => {
                 const isOpen = location.daysOpen[day.toLowerCase()];
                 return `<div class="day-open-dot ${(isOpen ? "is-open" : "")}">${day}</div>`
             }).join('\n');

@@ -38,8 +38,10 @@ class LCVMap {
             .filter(location => !isNaN(location.latitude) && !isNaN(location.longitude));
 
         this.markers = locations.map(location => {
-            const daysOpen = Object.entries(location.daysOpen).map(([day, isOpen]) => {
-                return `<div class="day-open-dot ${(isOpen ? "is-open" : "")}">${day.toUpperCase()}</div>`
+            const days = ["W", "T", "F", "S"];
+            const daysOpen = days.map(day => {
+                const isOpen = location.daysOpen[day.toLowerCase()];
+                return `<div class="day-open-dot ${(isOpen ? "is-open" : "")}">${day}</div>`
             }).join('\n');
 
             const infoWindow = new google.maps.InfoWindow({

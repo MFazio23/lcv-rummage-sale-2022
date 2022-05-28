@@ -33,3 +33,38 @@ body {
     border: 1px solid black;
     color: white;
 }
+
+.current-location-image {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.current-location-button .current-location-image:last-child {
+    display: none;
+}
+
+.current-location-button:hover .current-location-image:first-child {
+    display: none;
+}
+
+.current-location-button:hover .current-location-image:last-child {
+    display: inline-block;
+}
+
+.current-location-button:active .current-location-image:first-child {
+    display: none;
+}
+
+.current-location-button:active .current-location-image:last-child {
+    display: inline-block;
+}
+
+.current-location-button {
+    background-color: #FFF;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-right: 10px;
+    border: 0;
+}

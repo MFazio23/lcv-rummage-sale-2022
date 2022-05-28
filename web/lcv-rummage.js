@@ -15,9 +15,33 @@ class LCVMap {
             }
         )
 
+        this.addCurrentLocationButton()
+
         if (this.locations) {
             this.loadMarkers()
         }
+    }
+
+    addCurrentLocationButton() {
+        this.currentLocationButton = document.createElement('button');
+
+        this.currentLocationUnusedImage = document.createElement('img');
+        this.currentLocationUnusedImage.src = "location-target-666.png";
+        this.currentLocationUnusedImage.classList.add("current-location-image");
+        this.currentLocationButton.appendChild(this.currentLocationUnusedImage);
+
+        this.currentLocationHoverImage = document.createElement('img');
+        this.currentLocationHoverImage.src = "location-target-333.png";
+        this.currentLocationHoverImage.classList.add("current-location-image");
+        this.currentLocationButton.appendChild(this.currentLocationHoverImage);
+
+        this.currentLocationButton.classList.add("current-location-button");
+
+        this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(this.currentLocationButton);
+
+        this.currentLocationButton.addEventListener('click', () => {
+            this.startLocationHandling();
+        })
     }
 
     setLocations(locations) {
@@ -28,15 +52,50 @@ class LCVMap {
         }
     }
 
-    loadMarkers() {
+    startLocationHandling() {
+        if (navigator.geolocation) {
+            this.updateCurrentLocationIcon();
+            navigator.geolocation.watchPosition((position) => {
+                this.currentPosition = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
 
-        if (this.markers) {
-            this.markers.forEach(marker => marker.setMap(null))
+                this.currentLocationMarker = new google.maps.Marker({
+                    position: this.currentPosition,
+                    map: this.map,
+                    icon: "current-location-dot-24x24.png",
+                    title: "Your current location"
+                })
+
+                this.map.setCenter(this.currentPosition);
+                this.map.setZoom(17);
+            });
         }
+    }
 
+    updateCurrentLocationIcon() {
+        this.currentLocationUnusedImage.src = "location-target-blue.png"
+        this.currentLocationHoverImage.src = "location-target-darker-blue.png"
+    }
+
+    loadMarkers() {
         const locations = Object
             .values(this.locations)
             .filter(location => !isNaN(location.latitude) && !isNaN(location.longitude));
+
+        if (this.markers) {
+            this.markers.forEach(marker => marker.setMap(null))
+        } else {
+            // This is the first load of the markers, let's center things.
+            const bounds = new google.maps.LatLngBounds();
+
+            locations.forEach(location => {
+                bounds.extend({lat: location.latitude, lng: location.longitude})
+            })
+
+            this.map.fitBounds(bounds);
+        }
 
         this.markers = locations.map(location => {
             const daysOpen = this.days.map(day => {

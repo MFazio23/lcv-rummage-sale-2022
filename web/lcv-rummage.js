@@ -64,18 +64,18 @@ class LCVMap {
                 console.log(this.currentPosition);
 
                 if (this.currentLocationMarker) {
-                    this.currentLocationMarker.setMap(null)
+                    this.currentLocationMarker.setPosition(this.currentPosition)
                 } else {
+                    this.currentLocationMarker = new google.maps.Marker({
+                        position: this.currentPosition,
+                        map: this.map,
+                        icon: "current-location-dot-24x24.png",
+                        title: "Your current location"
+                    })
+
                     this.map.setCenter(this.currentPosition);
                     this.map.setZoom(17);
                 }
-
-                this.currentLocationMarker = new google.maps.Marker({
-                    position: this.currentPosition,
-                    map: this.map,
-                    icon: "current-location-dot-24x24.png",
-                    title: "Your current location"
-                })
             });
         }
     }

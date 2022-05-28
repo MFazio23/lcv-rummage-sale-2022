@@ -65,6 +65,9 @@ class LCVMap {
 
                 if (this.currentLocationMarker) {
                     this.currentLocationMarker.setMap(null)
+                } else {
+                    this.map.setCenter(this.currentPosition);
+                    this.map.setZoom(17);
                 }
 
                 this.currentLocationMarker = new google.maps.Marker({
@@ -73,9 +76,6 @@ class LCVMap {
                     icon: "current-location-dot-24x24.png",
                     title: "Your current location"
                 })
-
-                this.map.setCenter(this.currentPosition);
-                this.map.setZoom(17);
             });
         }
     }

@@ -61,6 +61,12 @@ class LCVMap {
                     lng: position.coords.longitude
                 }
 
+                console.log(this.currentPosition);
+
+                if (this.currentLocationMarker) {
+                    this.currentLocationMarker.setMap(null)
+                }
+
                 this.currentLocationMarker = new google.maps.Marker({
                     position: this.currentPosition,
                     map: this.map,

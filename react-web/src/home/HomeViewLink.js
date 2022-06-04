@@ -2,6 +2,11 @@ import {Box, Button, Card, CardActions, CardContent, Typography} from "@mui/mate
 import {Link} from "react-router-dom";
 
 function HomeViewLink(props) {
+
+    const link = props.buttonLink ?
+        <Button size="large" component={Link} to={props.buttonLink}>{props.buttonText}</Button> :
+        <Button size="large" href={props.buttonUrl}>{props.buttonText}</Button>;
+
     return (
         <Card sx={{minWidth: "200px"}}>
             <CardContent>
@@ -11,7 +16,7 @@ function HomeViewLink(props) {
             </CardContent>
             <CardActions>
                 <Box textAlign="center">
-                    <Button size="large" component={Link} to={props.buttonLink}>{props.buttonText}</Button>
+                    {link}
                 </Box>
             </CardActions>
         </Card>

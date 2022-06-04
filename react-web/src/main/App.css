@@ -12,3 +12,36 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.list-view-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.MuiTypography-root.list-view-house-id {
+  margin-right: 8px;
+  color: #3573EA;
+}
+
+.days-open-dots {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.day-open-dot {
+  height: 24px;
+  width: 24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid darkgray;
+  color: darkgray;
+}
+
+.is-open {
+  background-color: #3573EA;
+  border: 1px solid black;
+  color: white;
+}

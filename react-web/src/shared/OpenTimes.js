@@ -3,7 +3,7 @@ function OpenTimes(props) {
 
     return <div className="days-open-dots">
         {days.map(day => {
-            const isOpen = props.house.daysOpen[day];
+            const isOpen = props.house.daysOpen[day.toLowerCase()];
             return <OpenTimeItem key={day} isOpen={isOpen} day={day}/>
         })}
     </div>

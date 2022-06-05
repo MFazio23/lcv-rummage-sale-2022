@@ -45,3 +45,11 @@
   border: 1px solid black;
   color: white;
 }
+
+.payment-item {
+  width: 1.5em;
+}
+
+.disabled {
+  filter: grayscale(100%);
+}

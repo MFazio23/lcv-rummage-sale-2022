@@ -8,10 +8,12 @@ const paymentOptions = {
 };
 
 function PaymentItems(props) {
-    return (Object.entries(paymentOptions).map(([name, logoUrl]) => {
-        const isEnabled = props.paymentOptions[name] || false;
-        return <PaymentItem key={name} name={name} logoUrl={logoUrl} isEnabled={isEnabled}/>
-    }))
+    return <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around", height: "100%"}}>
+        {Object.entries(paymentOptions).map(([name, logoUrl]) => {
+            const isEnabled = props.paymentOptions[name] || false;
+            return <PaymentItem key={name} name={name} logoUrl={logoUrl} isEnabled={isEnabled}/>
+        })}
+    </div>
 }
 
 export default PaymentItems;

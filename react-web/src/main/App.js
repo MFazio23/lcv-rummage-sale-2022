@@ -14,17 +14,22 @@ const styles = theme => ({
 
 const style = withStyles(styles);
 
+const googleMapUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAhDPEeXP0tVyCWcOeKTFZqZXq9JZhbJvI&v=weekly"
+const favoriteHousesKey = "favoriteHouses";
+
 function App({classes}) {
     const [houses, setHouses] = useState({});
     const [favoriteHouses, setFavoriteHouses] = useState({});
 
+    console.log(classes.bottomNavSpacer)
+
     const onHeartClicked = (houseId, isFavorited) => {
-        setFavoriteHouses(
-            {
-                ...favoriteHouses,
-                [houseId]: isFavorited
-            }
-        )
+        const newFavorites = {
+            ...favoriteHouses,
+            [houseId]: isFavorited
+        }
+        setFavoriteHouses(newFavorites);
+        localStorage.setItem(favoriteHousesKey, JSON.stringify(newFavorites));
     }
 
     useEffect(() => {
@@ -32,17 +37,23 @@ function App({classes}) {
     }, [])
 
     useEffect(() => {
-        localStorage.setItem("favoriteHouses", JSON.stringify(favoriteHouses))
-    });
+        console.log("Loading from local storage.");
+        setFavoriteHouses(JSON.parse(localStorage.getItem(favoriteHousesKey)));
+    }, [])
 
     return (
         <div className="App">
             <BrowserRouter>
-                <div>
+                <div style={{width: "100%", height: "100%"}}>
                     <Routes>
                         <Route path="/list" element={<ListView houses={houses} favoriteHouses={favoriteHouses}
                                                                onHeartClicked={onHeartClicked}/>}/>
-                        <Route path="/map" element={<MapView houses={houses}/>}/>
+                        <Route path="/map" element={<MapView houses={houses} googleMapURL={googleMapUrl}
+                                                             favoriteHouses={favoriteHouses}
+                                                             onHeartClicked={onHeartClicked}
+                                                             containerElement={<div className="map-view"/>}
+                                                             mapElement={<div style={{height: `100%`}}/>}
+                                                             loadingElement={<div style={{height: "100%"}}/>}/>}/>
                         <Route path="/" element={<HomeView/>}/>
                     </Routes>
                 </div>

@@ -27,7 +27,7 @@ const MapView = withScriptjs(
         }, []);
 
         return (
-            <GoogleMap defaultZoom={defaultZoom} defaultCenter={mapCenter}>
+            <GoogleMap defaultZoom={defaultZoom} defaultCenter={mapCenter} onClick={(e) => setCurrentInfoWindow(null)}>
                 {
                     userLocation && <Marker key="userLocation" position={userLocation} title="User Location"
                                             icon="/assets/current-location-dot-24x24.png"/>

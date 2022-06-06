@@ -4,8 +4,7 @@ import React from "react";
 
 const HouseMarker = (props) => {
     const house = props.house;
-    return <Marker key={props.key}
-                   position={{lat: house.latitude, lng: house.longitude}}
+    return <Marker position={{lat: house.latitude, lng: house.longitude}}
                    title={house.address}
                    label={{
                        text: house.houseId,
@@ -21,7 +20,7 @@ const HouseMarker = (props) => {
                    }}
     >
         {props.currentInfoWindow === house.houseId &&
-            <InfoWindow key={`${props.key}-info`} onCloseClick={() => props.onSetCurrentInfoWindow(null)}>
+            <InfoWindow key={`${props.houseId}-info`} onCloseClick={() => props.onSetCurrentInfoWindow(null)}>
                 <HouseInfoWindow house={house} isFavorited={props.isFavorited}
                                  onHeartClicked={props.onHeartClicked}/>
             </InfoWindow>}

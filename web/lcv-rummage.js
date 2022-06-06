@@ -60,9 +60,7 @@ class LCVMap {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 }
-
-                console.log(this.currentPosition);
-
+                
                 if (this.currentLocationMarker) {
                     this.currentLocationMarker.setPosition(this.currentPosition)
                 } else {

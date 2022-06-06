@@ -9,21 +9,22 @@ const MapView = withScriptjs(
     withGoogleMap((props) => {
         const [currentInfoWindow, setCurrentInfoWindow] = useState(null);
         const [userLocation, setUserLocation] = useState(null);
+
         const houses = Object
             .values(props.houses)
             .filter(location => !isNaN(location.latitude) && !isNaN(location.longitude));
+
         useEffect(() => {
             if (navigator.geolocation) {
                 navigator.geolocation.watchPosition((pos) => {
-                    console.log("Position:", pos)
                     setUserLocation({
                         lat: pos.coords.latitude,
                         lng: pos.coords.longitude,
                     })
                 })
             }
-        }, [])
-        console.log("User Location:", userLocation);
+        }, []);
+
         return (
             <GoogleMap defaultZoom={defaultZoom} defaultCenter={mapCenter}>
                 {

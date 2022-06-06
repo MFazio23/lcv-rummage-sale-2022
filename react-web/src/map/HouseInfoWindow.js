@@ -9,7 +9,6 @@ const HouseInfoWindow = (props) => {
 
     return (
         <Grid container spacing={2} direction="row">
-
             <Grid item container xs={2} justifyContent="center" direction="column">
                 <Grid item>
                     <Typography variant="h5" color="#3573EA">{house.houseId}</Typography>

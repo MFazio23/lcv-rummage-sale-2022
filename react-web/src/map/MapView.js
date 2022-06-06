@@ -1,6 +1,7 @@
-import {GoogleMap, InfoWindow, Marker, withGoogleMap, withScriptjs} from "react-google-maps";
+import React from "react";
+import {GoogleMap, Marker, withGoogleMap, withScriptjs} from "react-google-maps";
 import {useEffect, useState} from "react";
-import HouseInfoWindow from "./HouseInfoWindow";
+import HouseMarker from "./HouseMarker";
 
 const mapCenter = {lat: 43.07411085808346, lng: -88.44808750766715};
 const defaultZoom = 15;
@@ -33,28 +34,9 @@ const MapView = withScriptjs(
                 }
                 {Object.entries(houses).map(([key, house]) => {
                     const isFavorited = props.favoriteHouses && props.favoriteHouses[house.houseId];
-                    return <Marker key={key}
-                                   position={{lat: house.latitude, lng: house.longitude}}
-                                   title={house.address}
-                                   label={{
-                                       text: house.houseId,
-                                       color: 'white',
-                                       fontFamily: 'monospace'
-                                   }}
-                                   icon={{
-                                       url: '/assets/maps-poi-marker-blue-24x38.png',
-                                       labelOrigin: new window.google.maps.Point(12, 13)
-                                   }}
-                                   onClick={(e) => {
-                                       setCurrentInfoWindow(house.houseId)
-                                   }}
-                    >
-                        {currentInfoWindow === house.houseId &&
-                            <InfoWindow key={`${key}-info`} onCloseClick={() => setCurrentInfoWindow(null)}>
-                                <HouseInfoWindow house={house} isFavorited={isFavorited}
-                                                 onHeartClicked={props.onHeartClicked}/>
-                            </InfoWindow>}
-                    </Marker>
+                    return <HouseMarker key={key} house={house} isFavorited={isFavorited}
+                                        currentInfoWindow={currentInfoWindow}
+                                        onSetCurrentInfoWindow={(infoWindow) => setCurrentInfoWindow(infoWindow)}/>
                 })}
             </GoogleMap>
         );

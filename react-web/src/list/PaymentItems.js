@@ -1,3 +1,4 @@
+import React from "react";
 import PaymentItem from "./PaymentItem";
 
 const paymentOptions = {

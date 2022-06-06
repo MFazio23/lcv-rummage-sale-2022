@@ -1,6 +1,7 @@
+import React from "react";
 import HomeViewLink from "./HomeViewLink";
 import {FileDownload, FormatListBulleted, Map} from "@mui/icons-material";
-import {Grid, Stack} from "@mui/material";
+import {Stack} from "@mui/material";
 
 function HomeView() {
     const pdfLink = "https://faziostaticsitestorage.file.core.windows.net/lcv-rummage-sale/LCV%20Rummage%20Sale.pdf?sv=2021-04-10&st=2022-05-30T17%3A27%3A39Z&se=2055-05-31T17%3A27%3A00Z&sr=f&sp=r&sig=P9JQfF7CLi4UJyFgvleT2xJTQGCDYmos26Enndx6UDA%3D";

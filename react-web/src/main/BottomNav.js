@@ -1,3 +1,4 @@
+import React from "react";
 import {BottomNavigation, BottomNavigationAction, Paper} from "@mui/material";
 import {Link, useLocation} from "react-router-dom";
 import {FormatListBulleted, Home, Map} from "@mui/icons-material";

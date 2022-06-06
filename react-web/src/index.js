@@ -1,18 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { render } from 'react-dom';
 import './index.css';
 import App from './main/App';
 import reportWebVitals from './reportWebVitals';
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import theme from './theme';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const container = document.getElementById('root');
 
-root.render(
+render(
     <ThemeProvider theme={theme}>
         <CssBaseline/>
         <App/>
     </ThemeProvider>,
+    container
 );
 
 // If you want to start measuring performance in your app, pass a function

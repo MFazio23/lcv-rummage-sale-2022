@@ -1,3 +1,5 @@
+import React from "react";
+
 function OpenTimes(props) {
     const days = ["W", "T", "F", "S"];
 

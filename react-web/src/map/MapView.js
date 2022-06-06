@@ -1,5 +1,5 @@
 import {GoogleMap, InfoWindow, Marker, withGoogleMap, withScriptjs} from "react-google-maps";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import HouseInfoWindow from "./HouseInfoWindow";
 
 const mapCenter = {lat: 43.07411085808346, lng: -88.44808750766715};
@@ -7,16 +7,31 @@ const defaultZoom = 15;
 
 const MapView = withScriptjs(
     withGoogleMap((props) => {
-        const [currentInfoWindow, setCurrentInfoWindow] = useState(null)
+        const [currentInfoWindow, setCurrentInfoWindow] = useState(null);
+        const [userLocation, setUserLocation] = useState(null);
         const houses = Object
             .values(props.houses)
             .filter(location => !isNaN(location.latitude) && !isNaN(location.longitude));
+        useEffect(() => {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition((pos) => {
+                    console.log("Position:", pos)
+                    setUserLocation({
+                        lat: pos.coords.latitude,
+                        lng: pos.coords.longitude,
+                    })
+                })
+            }
+        }, [])
+        console.log("User Location:", userLocation);
         return (
             <GoogleMap defaultZoom={defaultZoom} defaultCenter={mapCenter}>
-                <Marker position={mapCenter} label={{text: "MF"}} />
+                {
+                    userLocation && <Marker key="userLocation" position={userLocation} title="User Location"
+                                            icon="/assets/current-location-dot-24x24.png"/>
+                }
                 {Object.entries(houses).map(([key, house]) => {
                     const isFavorited = props.favoriteHouses && props.favoriteHouses[house.houseId];
-
                     return <Marker key={key}
                                    position={{lat: house.latitude, lng: house.longitude}}
                                    title={house.address}

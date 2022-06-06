@@ -21,8 +21,6 @@ function App({classes}) {
     const [houses, setHouses] = useState({});
     const [favoriteHouses, setFavoriteHouses] = useState({});
 
-    console.log(classes.bottomNavSpacer)
-
     const onHeartClicked = (houseId, isFavorited) => {
         const newFavorites = {
             ...favoriteHouses,
@@ -37,7 +35,6 @@ function App({classes}) {
     }, [])
 
     useEffect(() => {
-        console.log("Loading from local storage.");
         setFavoriteHouses(JSON.parse(localStorage.getItem(favoriteHousesKey)));
     }, [])
 

@@ -10,7 +10,7 @@ const ListViewHeader = (props) => (
             </FormGroup>
         </div>
         <div style={{display: "flex"}}>
-            <TextField id="outlined-search" label="Search field" type="search" size="small"
+            <TextField id="outlined-search" label="Search descriptions" type="search" size="small"
                        onChange={(e) => props.onSearch(e.target.value)}/>
         </div>
     </div>

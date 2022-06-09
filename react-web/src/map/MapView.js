@@ -36,6 +36,7 @@ const MapView = withScriptjs(
                     const isFavorited = props.favoriteHouses && props.favoriteHouses[house.houseId];
                     return <HouseMarker key={key} house={house} isFavorited={isFavorited}
                                         currentInfoWindow={currentInfoWindow}
+                                        onHeartClicked={props.onHeartClicked}
                                         onSetCurrentInfoWindow={(infoWindow) => setCurrentInfoWindow(infoWindow)}/>
                 })}
             </GoogleMap>

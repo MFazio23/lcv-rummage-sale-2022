@@ -11,7 +11,7 @@ const paymentOptions = {
 };
 
 function PaymentItems(props) {
-    return <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around", height: "100%"}}>
+    return <div className="payment-items">
         {Object.entries(paymentOptions).map(([name, logoUrl]) => {
             const isEnabled = props.paymentOptions[name] || false;
             return <PaymentItem key={name} name={name} logoUrl={logoUrl} isEnabled={isEnabled}/>

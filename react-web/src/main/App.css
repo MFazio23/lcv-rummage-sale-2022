@@ -89,6 +89,13 @@ body, html {
   color: white;
 }
 
+.payment-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
 .payment-item {
   width: 1.5em;
 }
@@ -111,28 +118,6 @@ body, html {
 
 .rummage-location-title {
   text-align: center;
-}
-
-.days-open_dots {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.day-open-dot {
-  height: 24px;
-  width: 24px;
-  line-height: 24px;
-  text-align: center;
-  border-radius: 50%;
-  display: inline-block;
-  border: 1px solid darkgray;
-  color: darkgray;
-}
-
-.is-open {
-  background-color: #3573EA;
-  border: 1px solid black;
-  color: white;
 }
 
 /* Google Maps overrides */

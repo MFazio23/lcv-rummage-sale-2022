@@ -112,7 +112,7 @@ body, html {
   filter: grayscale(100%);
 }
 
-.disabled.square-logo {
+.square-logo.disabled {
   opacity: 50%;
 }
 

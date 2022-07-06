@@ -1,6 +1,6 @@
 import React from "react";
 import './App.css';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes } from "react-router-dom";
 import MapView from "../map/MapView";
 import HomeView from "../home/HomeView";
 import ListView from "../list/ListView";
@@ -45,14 +45,14 @@ function App({classes}) {
                 <div style={{width: "100%", height: "100%"}}>
                     <Routes>
                         <Route path="/list" element={<ListView houses={houses} favoriteHouses={favoriteHouses}
-                                                               onHeartClicked={onHeartClicked}/>}/>
+                                                               onHeartClicked={onHeartClicked} classes={classes}/>}/>
                         <Route path="/map" element={<MapView houses={houses} googleMapURL={googleMapUrl}
                                                              favoriteHouses={favoriteHouses}
                                                              onHeartClicked={onHeartClicked}
                                                              containerElement={<div className="map-view"/>}
                                                              mapElement={<div style={{height: `100%`}}/>}
                                                              loadingElement={<div style={{height: "100%"}}/>}/>}/>
-                        <Route path="/" element={<HomeView/>}/>
+                        <Route path="/" element={<HomeView classes={classes}/>}/>
                     </Routes>
                 </div>
 

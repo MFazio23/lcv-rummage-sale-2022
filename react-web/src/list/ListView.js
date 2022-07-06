@@ -30,6 +30,8 @@ function ListView(props) {
                 return <ListViewItem key={house.houseId} house={house} isFavorited={isFavorited}
                                      onHeartClicked={props.onHeartClicked}/>
             })}
+
+            <div className={props.classes.bottomNavSpacer}></div>
         </div>
     );
 }

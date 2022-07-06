@@ -1,6 +1,7 @@
 import React from "react";
 import {GoogleMap, Marker, withGoogleMap, withScriptjs} from "react-google-maps";
 import {useEffect, useState} from "react";
+import { useLocation } from "react-router-dom";
 import HouseMarker from "./HouseMarker";
 
 const mapCenter = {lat: 43.07411085808346, lng: -88.44808750766715};
@@ -10,6 +11,8 @@ const MapView = withScriptjs(
     withGoogleMap((props) => {
         const [currentInfoWindow, setCurrentInfoWindow] = useState(null);
         const [userLocation, setUserLocation] = useState(null);
+
+        const location = useLocation();
 
         const houses = Object
             .values(props.houses)
@@ -25,6 +28,10 @@ const MapView = withScriptjs(
                 })
             }
         }, []);
+
+        useEffect(() => {
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+        }, [location])
 
         return (
             <GoogleMap defaultZoom={defaultZoom} defaultCenter={mapCenter} onClick={(e) => setCurrentInfoWindow(null)}>

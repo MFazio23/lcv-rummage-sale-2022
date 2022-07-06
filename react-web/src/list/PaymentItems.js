@@ -4,8 +4,10 @@ import PaymentItem from "./PaymentItem";
 const paymentOptions = {
     "cash": "/assets/money.png",
     "venmo": "/assets/venmo-icon.svg",
-    "payPal": "/assets/paypal-logo.svg",
-    "zelle": "/assets/zelle-logo.png"
+    //"payPal": "/assets/paypal-logo.svg",
+    //"zelle": "/assets/zelle-logo.png",
+    "square": "/assets/square-logo.jpg",
+    "googlePay": "/assets/google-pay-logo.jpg",
 };
 
 function PaymentItems(props) {

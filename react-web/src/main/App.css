@@ -105,6 +105,10 @@ body, html {
   filter: grayscale(100%);
 }
 
+.disabled.square-logo {
+  opacity: 50%;
+}
+
 .rummage-location-title {
   text-align: center;
 }

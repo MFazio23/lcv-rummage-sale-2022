@@ -7,6 +7,20 @@ import HouseMarker from "./HouseMarker";
 const mapCenter = {lat: 43.07411085808346, lng: -88.44808750766715};
 const defaultZoom = 15;
 
+const options = {
+    styles: [
+        {
+            featureType: "poi.business",
+            stylers: [{ visibility: "off" }],
+        },
+        {
+            featureType: "transit",
+            elementType: "labels.icon",
+            stylers: [{ visibility: "off" }],
+        },
+    ]
+}
+
 const MapView = withScriptjs(
     withGoogleMap((props) => {
         const [currentInfoWindow, setCurrentInfoWindow] = useState(null);
@@ -31,10 +45,10 @@ const MapView = withScriptjs(
 
         useEffect(() => {
             document.body.scrollTop = document.documentElement.scrollTop = 0;
-        }, [location])
+        }, [location]);
 
         return (
-            <GoogleMap defaultZoom={defaultZoom} defaultCenter={mapCenter} onClick={(e) => setCurrentInfoWindow(null)}>
+            <GoogleMap options={options} defaultZoom={defaultZoom} defaultCenter={mapCenter} onClick={(e) => setCurrentInfoWindow(null)}>
                 {
                     userLocation && <Marker key="userLocation" position={userLocation} title="User Location"
                                             icon="/assets/current-location-dot-24x24.png"/>

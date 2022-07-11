@@ -30,7 +30,7 @@ const HouseInfoWindow = (props) => {
                     <Typography variant="h5">{house.address}</Typography>
                 </Grid>
                 <Grid item>
-                    <Typography variant="body1">{house.blurb}</Typography>
+                    <Typography variant={house.blurb.length >= 200 ? "body2" : "body1"}>{house.blurb}</Typography>
                 </Grid>
                 <Grid item>
                     <OpenTimes house={house}/>

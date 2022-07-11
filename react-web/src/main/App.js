@@ -1,12 +1,13 @@
 import React from "react";
-import './App.css';
+import {useEffect, useState} from "react";
 import {BrowserRouter, Route, Routes } from "react-router-dom";
+import ReactGA from 'react-ga4';
+import {withStyles} from "@mui/styles";
+import './App.css';
 import MapView from "../map/MapView";
 import HomeView from "../home/HomeView";
 import ListView from "../list/ListView";
 import BottomNav from "./BottomNav";
-import {withStyles} from "@mui/styles";
-import {useEffect, useState} from "react";
 import {getHouses} from "../data/firebase-db";
 
 const styles = theme => ({
@@ -21,6 +22,9 @@ const favoriteHousesKey = "favoriteHouses";
 function App({classes}) {
     const [houses, setHouses] = useState({});
     const [favoriteHouses, setFavoriteHouses] = useState({});
+
+    ReactGA.initialize('G-83JTZS1WH3', { debug: true });
+    ReactGA.send("pageview");
 
     const onHeartClicked = (houseId, isFavorited) => {
         const newFavorites = {

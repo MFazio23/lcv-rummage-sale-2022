@@ -2,6 +2,7 @@ import React from "react";
 import ListViewItem from "./ListViewItem";
 import ListViewHeader from "./ListViewHeader";
 import {useState} from "react";
+import GA from "../shared/GA";
 
 const favoritesOnlyKey = "favoritesOnly";
 
@@ -10,6 +11,8 @@ function ListView(props) {
     const [favoritesOnly, setFavoritesOnly] = useState(
         localStorage.getItem(favoritesOnlyKey) === 'true'
     );
+
+    GA.usePageTracking();
 
     const onSwitchToggle = (e, isEnabled) => {
         setFavoritesOnly(isEnabled);

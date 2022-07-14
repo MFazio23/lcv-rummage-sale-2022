@@ -3,6 +3,7 @@ import {GoogleMap, Marker, withGoogleMap, withScriptjs} from "react-google-maps"
 import {useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
 import HouseMarker from "./HouseMarker";
+import GA from "../shared/GA";
 
 const mapCenter = {lat: 43.07411085808346, lng: -88.44808750766715};
 const defaultZoom = 15;
@@ -31,6 +32,8 @@ const MapView = withScriptjs(
         const houses = Object
             .values(props.houses)
             .filter(location => !isNaN(location.latitude) && !isNaN(location.longitude));
+
+        GA.usePageTracking();
 
         useEffect(() => {
             if (navigator.geolocation) {

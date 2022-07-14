@@ -2,8 +2,11 @@ import React from "react";
 import HomeViewLink from "./HomeViewLink";
 import {FileDownload, FormatListBulleted, Map} from "@mui/icons-material";
 import {Stack} from "@mui/material";
+import GA from "../shared/GA";
 
 function HomeView(props) {
+    GA.usePageTracking();
+
     const pdfLink = "https://faziostaticsitestorage.file.core.windows.net/lcv-rummage-sale/lcv-rummage-flyer.pdf?sv=2021-04-10&st=2022-07-11T02%3A34%3A26Z&se=2032-07-12T02%3A34%3A00Z&sr=f&sp=r&sig=1GH%2BadIvJQGRX7hsCrEDNqI%2FxSrkqz0L0nZvyeh%2F0BE%3D"
     return (
         <div style={{padding: '8px'}}>
